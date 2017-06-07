@@ -4,10 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AuthComponent } from './auth/auth.component';
+import { MyVocabularyComponent } from './my-vocabulary/my-vocabulary.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    AuthComponent,
+    MyVocabularyComponent
   ],
   imports: [
     BrowserModule,
