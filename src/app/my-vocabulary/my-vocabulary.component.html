@@ -1,6 +1,8 @@
 <form action="#">
   <div class="form-group">
-    <label for="new-words">Input new words:</label><input type="text" class="form-control" id="new-words">
+    <label for="new-words">Input new words:</label>
+    <input #nwords type="text" class="form-control" id="new-words">
   </div>
-  <button class="btn btn-primary">Add</button>
+  <button class="btn btn-primary" (click)="addWord(nwords.value)">Add</button>
 </form>
+<div>{{myWords}}</div>

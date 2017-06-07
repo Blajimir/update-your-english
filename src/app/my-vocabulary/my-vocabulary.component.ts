@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'my-vocabulary',
+  selector: 'app-my-vocabulary',
   templateUrl: './my-vocabulary.component.html',
   styleUrls: ['./my-vocabulary.component.css']
 })
-export class MyVocabularyComponent implements OnInit {
-  myWords:string[]= new Array("cat","dog","rabbit","fox","bird","fish");
+export class MyVocabularyComponent {
+  myWords: Array<string>;
+
   constructor() {
-    
+    this.myWords = ['cat', 'dog', 'rabbit', 'fox', 'bird', 'fish'];
+    console.log('app-my-vocabulary create');
   }
 
-  ngOnInit() {
+  addWord(word: string) {
+    this.myWords.push(word);
+    console.log(this.myWords);
   }
 
 }
