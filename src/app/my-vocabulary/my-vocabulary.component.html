@@ -3,6 +3,6 @@
     <label for="new-words">Input new words:</label>
     <input #nwords type="text" class="form-control" id="new-words">
   </div>
-  <button class="btn btn-primary" (click)="addWord(nwords.value)">Add</button>
+  <button class="btn btn-primary" (click)="addWords(nwords)">Add</button>
 </form>
-<div>{{myWords}}</div>
+<div>{{myWords.toString()}}</div>
