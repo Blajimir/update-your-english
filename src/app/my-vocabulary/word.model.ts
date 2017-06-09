@@ -5,9 +5,9 @@ export class Word {
   value: string;
   rate: number;
 
-  constructor(word: string) {
+  constructor(word: string, rate?:number) {
     this.value = word;
-    this.rate = 0;
+    this.rate = rate?rate:0;
   }
 
   toString(): string {
