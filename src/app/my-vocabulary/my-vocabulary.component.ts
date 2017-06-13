@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Word} from './word.model';
-import {Observable} from 'rxjs/Observable'
-import {Http, Request} from '@angular/http';
+import {MyVocabularyService} from "./my-vocabulary.service";
 
 @Component({
   selector: 'app-my-vocabulary',
@@ -11,16 +10,11 @@ import {Http, Request} from '@angular/http';
 export class MyVocabularyComponent {
   myWords: Array<Word>;
 
-  constructor(private http: Http) {
-    this.myWords = [new Word('cat'), new Word('dog'), new Word('rabbit'), new Word('fox'), new Word('bird'), new Word('fish')];
-    this.http.get('http://localhost:4200/assets/words.json').map(resp => {
-        console.log('http status: '+resp.status);
-        return resp.json();
-      }).map(stream => stream.map(res => new Word(res.value,res.rate)))
-        .subscribe(words=> words.forEach(word=> console.log(word.toString())));
+  constructor(private myVocabularyService: MyVocabularyService) {
+    this.myVocabularyService.myWordsFeed.subscribe(word => this.myWords.push(word));
   }
 
-  //TODO Сделать проверку на существования передаваемого слова
+
   checkSyntax(word: string): boolean {
     if (!word || this.myWords.some((elem) => {
         if (elem.value == word)
