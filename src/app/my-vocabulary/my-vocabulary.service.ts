@@ -10,17 +10,19 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class MyVocabularyService {
   myWordsFeed: Observable<Word>;
+  errorFeed: Observable<any>;
   private wordsObserver: any;
-  private errorWordsObserver: any;
+  private errorsObserver: any;
   private wordUrl: string = 'http://localhost:4200/assets/words.json';
   private words: Array<Word> = [];
 
   constructor(private http: Http) {
     this.myWordsFeed = new Observable(observer => this.wordsObserver = observer);
-    this.loadWords();
+    this.errorFeed = Observable.create(observer => this.errorsObserver = observer);
+    this.fetchWords();
   }
 
-  loadWords() {
+  fetchWords() {
     this.http.get(this.wordUrl).map(resp => {
       console.log('http status: ' + resp.status);
       return resp.json();
@@ -30,8 +32,9 @@ export class MyVocabularyService {
         words.forEach(word => this.wordsObserver.next(word))
       });
   }
+
   //TODO Сделать проверку на существования передаваемого слова
-  private checkWord(word:string):boolean{
+  private checkWord(word: string): boolean {
     if (!word || this.words.some((elem) => {
         if (elem.value == word)
           return true;
@@ -40,11 +43,12 @@ export class MyVocabularyService {
     }
     return true;
   }
+
   private saveWord(word: string): Word {
     //TODO Сохранить новое слово на сервере
-    if(this.checkWord(word)){
+    if (this.checkWord(word)) {
       return new Word(word);
-    }else{
+    } else {
       return null;
     }
 
@@ -53,9 +57,10 @@ export class MyVocabularyService {
   addWord(word: string) {
     let result: Word = this.saveWord(word);
     if (result) {
+      this.words.push(result);
       this.wordsObserver.next(result);
-    }else{
-      this.wordsObserver.error(`Word: $word already exist!`);
+    } else {
+      this.errorsObserver.next(word?`"${word}" already exist!`:'Word string empty!');
     }
   }
 }

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Word} from './word.model';
 import {MyVocabularyService} from "./my-vocabulary.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-my-vocabulary',
@@ -8,31 +9,21 @@ import {MyVocabularyService} from "./my-vocabulary.service";
   styleUrls: ['./my-vocabulary.component.css']
 })
 export class MyVocabularyComponent {
-  myWords: Array<Word>;
+  myWords: Array<Word> = [];
 
   constructor(private myVocabularyService: MyVocabularyService) {
-    this.myVocabularyService.myWordsFeed.subscribe(word => this.myWords.push(word));
-  }
-
-
-  checkSyntax(word: string): boolean {
-    if (!word || this.myWords.some((elem) => {
-        if (elem.value == word)
-          return true;
-      })) {
-      return false;
-    }
-    return true;
+    this.myVocabularyService.myWordsFeed.subscribe(word => {
+      this.myWords.push(word)
+    },error=>console.log(error));
+    this.myVocabularyService.errorFeed.subscribe(err=>console.warn('Error add word: %s',err),err=>console.error('Error: %s',err));
   }
 
   addWords(input: HTMLInputElement): void {
 
     let wordArr: string[] = input.value.replace(/[\.,;:_]+/g, " ").split(/\s+/);
     wordArr.forEach((word) => {
-      if (this.checkSyntax(word)) {
-        this.testFunc(word);
-        this.myWords.push(new Word(word.toLowerCase()));
-      }
+      //this.testFunc(word);
+      this.myVocabularyService.addWord(word);
     });
     input.value = '';
   }
