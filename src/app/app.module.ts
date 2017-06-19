@@ -11,18 +11,22 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthComponent } from './auth/auth.component';
 import { MyVocabularyComponent } from './my-vocabulary/my-vocabulary.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AlertComponent } from './shared/alert/alert.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     AuthComponent,
-    MyVocabularyComponent
+    MyVocabularyComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,5 +5,8 @@
   </div>
   <button class="btn btn-primary" (click)="addWords(nwords)">Add</button>
 </form>
-<alert class="success"><span [innerHtml]="alert.msg"></span></alert>
 <div>{{myWords.toString()}}</div>
+<div class="alert alert-success" role="alert" [@testAnim]="stateAnim" (@testAnim.done)="afterAnim($event)">
+  <strong>Well done!</strong> You successfully read this important alert message.
+</div>
+<button class="btn" (click)="anim()">Go</button>
