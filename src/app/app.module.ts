@@ -12,7 +12,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthComponent } from './auth/auth.component';
 import { MyVocabularyComponent } from './my-vocabulary/my-vocabulary.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { AlertComponent } from './shared/alert/alert.component'
+import { AlertComponent } from './shared/alert/alert.component';
+import { ModalDirective } from './shared/modal/modal.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AlertComponent } from './shared/alert/alert.component'
     NavbarComponent,
     AuthComponent,
     MyVocabularyComponent,
-    AlertComponent
+    AlertComponent,
+    ModalDirective
   ],
   imports: [
     BrowserModule,

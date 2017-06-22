@@ -16,23 +16,24 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class AlertComponent {
   fadeState: string;
-  @Input() afterHide: (event) => void ;
+  @Input() afterHide: (event) => void;
+  @Input() content: string;
 
   constructor() {
     this.fadeState = 'show';
   }
 
-  hide(){
+  hide() {
     this.fadeState = 'hide';
   }
 
-  callbackAfterHide(event){
-    console.group( "Done animating" );
-    console.log( "From: ", event.fromState );
-    console.log( "To: ", event.toState );
-    console.log( "Actual State: ", this.fadeState );
+  callbackAfterHide(event) {
+    console.group("Done animating");
+    console.log("From: ", event.fromState);
+    console.log("To: ", event.toState);
+    console.log("Actual State: ", this.fadeState);
     console.groupEnd();
-    if(event.toState=='hide'){
+    if (event.toState == 'hide') {
       this.afterHide(event);
     }
   }
