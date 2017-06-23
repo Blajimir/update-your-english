@@ -22,7 +22,7 @@ import {trigger, transition, animate, keyframes, style} from '@angular/animation
     ])
   ],
   templateUrl: './my-vocabulary.component.html',
-  styleUrls: ['./my-vocabulary.component.css']
+  styleUrls: ['./my-vocabulary.component.css'],
 })
 export class MyVocabularyComponent {
   myWords: Array<Word> = [];
