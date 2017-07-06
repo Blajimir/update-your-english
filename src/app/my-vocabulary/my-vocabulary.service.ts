@@ -4,8 +4,9 @@
 
 import {Injectable} from '@angular/core';
 import {Word} from "./word.model";
-import {Http} from "@angular/http";
+//import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
+import {RrHttpService} from '../shared/shared'
 
 @Injectable()
 export class MyVocabularyService {
@@ -16,7 +17,7 @@ export class MyVocabularyService {
   private wordUrl: string = 'http://localhost:4200/assets/words.json';
   private words: Array<Word> = [];
 
-  constructor(private http: Http) {
+  constructor(private http: RrHttpService) {
     this.myWordsFeed = new Observable(observer => this.wordsObserver = observer);
     this.errorFeed = Observable.create(observer => this.errorsObserver = observer);
     this.fetchWords();
