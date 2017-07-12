@@ -14,6 +14,7 @@ import { MyVocabularyComponent } from './my-vocabulary/my-vocabulary.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AlertComponent } from './shared/alert/alert.component';
 import { ModalDirective } from './shared/modal/modal.directive';
+import { MyTrainingComponent } from './my-training/my-training.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ModalDirective } from './shared/modal/modal.directive';
     AuthComponent,
     MyVocabularyComponent,
     AlertComponent,
-    ModalDirective
+    ModalDirective,
+    MyTrainingComponent
   ],
   imports: [
     BrowserModule,
